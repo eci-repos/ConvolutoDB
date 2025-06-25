@@ -70,5 +70,16 @@
     <Build Include="Security\Common_Schema.sql" />
     <Build Include="Security\Activity_Schema.sql" />
     <Build Include="Security\Entity_Schema.sql" />
+    <Build Include="Common\Tables\Status_Type.sql" />
+    <Build Include="Entity\Tables\Location_Type.sql" />
+    <Build Include="Entity\Tables\Capacity_Type.sql" />
+    <Build Include="Entity\Tables\Location.sql" />
+    <Build Include="Entity\Tables\Age_Group_Type.sql" />
+    <Build Include="Activity\Tables\Activity_Type.sql" />
+    <Build Include="Activity\Tables\Price_Range_Type.sql" />
+    <Build Include="Activity\Tables\Dificulty_Type.sql" />
+    <Build Include="Activity\Tables\Participant_Type.sql" />
+    <Build Include="Activity\Tables\Participant.sql" />
+    <Build Include="Activity\Tables\Participant_Activity.sql" />
   </ItemGroup>
 </Project>
