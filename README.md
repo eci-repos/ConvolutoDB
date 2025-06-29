@@ -13,24 +13,49 @@ After building the Database project (in Visual Studio) you can Publish it to the
 Convoluto Database in SQL-Server 2025.  This will setup the base Database resources 
 including Tables, Views, and Procedures.
 
-## VECTOR EMBEDDINGS & SEMANTIC SEARCH
+The enhancement of the Convoluto Database adding resources to implement AI Semantic 
+Search follows and can be supplemented with the related
+"Implementing Native AI Semantic Search POC" documentation (article) topics 1 through 6.
+
+### 1. Vector Embeddings
 To prepare for Semantic Search (for now) additional steps must be done by hand including:
 
-- Run Scripts 1 through 3 in that order.
+- Run the Scripts/ 1 through 3 in that order.
 - Run the Activity/Scripts/Activity_Embeddings_Add.sql script to add embeddings.
 - Run the Entity/Scripts/Location_Embeddings_Add.sql script to add embeddings.
+- Test deployed resources with Activity/Tests/Test_Activity_Embeddings.sql
+
+NOTES:
+
+- Before testing AI features start the NGINX instance.
+
+### 2. Semantic Search
+To prepare for Semantic Search (for now) additional steps must be done by hand including:
+
 - Run the Activity/Procedures/Activity_Embedding_Update.sql script to update embeddings.
 - Run the Entity/Procedures/Location_Embedding_Update.sql script to update embeddings.
 - If needed, run the Activity/Indexes/Activity_Vector_Index.sql to create the VECTOR INDEX.
-- Test deployed resources with Activity/Tests/Test_Activity_Embeddings.
+- Test deployed resources with Activity/Tests/Test_Activity_Embeddings.sql
 
 NOTES:
 
 - Embeddings can't be updated in a table if there is an existing VECTOR INDEX
   therefore create the VECTOR INDEX after you updated the embeddings.
-- Before testing AI features start the NGINX instance.
 
-## ADVANCE CHUNKING & SEARCH
+### 3. Advance Chunking & Search
+To prepare for Chunking & Search (for now) additional steps must be done by hand including:
 
+- Run the Activity/Scripts/Activity_Chunks_Add.sql script to support Chunks.
+- Run the Activity/Procedures/Activity_Chunks_Update.sql script to update Chunks.
+- Test deployed resources with Activity/Tests/Test_Activity_Chunking.sql
+
+### 4. Native VECTOR_SEARCH Function
+Test VECTOR_SEARCH using Activity/Tests/Test_Activity_VectorSearch.sql
+
+### 5. Semantic Join Across Tables 
+Test Semantic Join using Activity/Tests/Test_Activity_Location.sql
+
+### 6. Semantic Similarity Join 
+Test Semantic Similarity using Activity/Tests/Test_Activity_Similar.sql
 
 
