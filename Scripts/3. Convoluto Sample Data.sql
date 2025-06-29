@@ -116,24 +116,24 @@ VALUES
 
 -- 10. Activity.Activity (50 sample activities)
 
--- First declare variables to hold location IDs
-DECLARE @centralPark UNIQUEIDENTIFIER, @metMuseum UNIQUEIDENTIFIER, @gramercyTavern UNIQUEIDENTIFIER, @broadwayTheater UNIQUEIDENTIFIER, @msg UNIQUEIDENTIFIER;
-DECLARE @y92 UNIQUEIDENTIFIER, @hudsonPark UNIQUEIDENTIFIER, @chelseaPiers UNIQUEIDENTIFIER, @empireState UNIQUEIDENTIFIER, @appleStore UNIQUEIDENTIFIER;
+-- First declare variables to hold location NOs
+DECLARE @centralPark INT, @metMuseum INT, @gramercyTavern INT, @broadwayTheater INT, @msg INT;
+DECLARE @y92 INT, @hudsonPark INT, @chelseaPiers INT, @empireState INT, @appleStore INT;
 
--- Get the location IDs
-SELECT @centralPark = LocationID FROM Entity.Location WHERE Name = 'Central Park';
-SELECT @metMuseum = LocationID FROM Entity.Location WHERE Name = 'Metropolitan Museum of Art';
-SELECT @gramercyTavern = LocationID FROM Entity.Location WHERE Name = 'Gramercy Tavern';
-SELECT @broadwayTheater = LocationID FROM Entity.Location WHERE Name = 'Broadway Theater';
-SELECT @msg = LocationID FROM Entity.Location WHERE Name = 'Madison Square Garden';
-SELECT @y92 = LocationID FROM Entity.Location WHERE Name = '92nd Street Y';
-SELECT @hudsonPark = LocationID FROM Entity.Location WHERE Name = 'Hudson River Park';
-SELECT @chelseaPiers = LocationID FROM Entity.Location WHERE Name = 'Chelsea Piers';
-SELECT @empireState = LocationID FROM Entity.Location WHERE Name = 'Empire State Building';
-SELECT @appleStore = LocationID FROM Entity.Location WHERE Name = 'Apple Fifth Avenue';
+-- Get the location NOs
+SELECT @centralPark = LocationNo FROM Entity.Location WHERE Name = 'Central Park';
+SELECT @metMuseum = LocationNo FROM Entity.Location WHERE Name = 'Metropolitan Museum of Art';
+SELECT @gramercyTavern = LocationNo FROM Entity.Location WHERE Name = 'Gramercy Tavern';
+SELECT @broadwayTheater = LocationNo FROM Entity.Location WHERE Name = 'Broadway Theater';
+SELECT @msg = LocationNo FROM Entity.Location WHERE Name = 'Madison Square Garden';
+SELECT @y92 = LocationNo FROM Entity.Location WHERE Name = '92nd Street Y';
+SELECT @hudsonPark = LocationNo FROM Entity.Location WHERE Name = 'Hudson River Park';
+SELECT @chelseaPiers = LocationNo FROM Entity.Location WHERE Name = 'Chelsea Piers';
+SELECT @empireState = LocationNo FROM Entity.Location WHERE Name = 'Empire State Building';
+SELECT @appleStore = LocationNo FROM Entity.Location WHERE Name = 'Apple Fifth Avenue';
 
 -- Insert activities
-INSERT INTO Activity.Activity (ActivityID, TypeID, LocationID, Name, Description, StartDateTime, EndDateTime, StatusID, StatusDate, AgeGroupID, Price, PriceRangeID, Rating, RatingDate, DificultyID)
+INSERT INTO Activity.Activity (ActivityID, TypeID, LocationNo, Name, Description, StartDateTime, EndDateTime, StatusID, StatusDate, AgeGroupID, Price, PriceRangeID, Rating, RatingDate, DificultyID)
 VALUES
 (NEWID(), 'Tour', @centralPark, 'Central Park Guided Walk', '2-hour guided tour of Central Park highlights', '2023-07-15 10:00:00', '2023-07-15 12:00:00', 'Active', '2023-06-01', 'All Ages', 25.00, '$10-$25', 4.7, '2023-06-20', 'Easy'),
 (NEWID(), 'Exhibition', @metMuseum, 'Impressionist Masters', 'Special exhibition featuring Monet, Renoir, and Degas', '2023-07-01 09:00:00', '2023-09-30 17:00:00', 'Active', '2023-05-15', 'All Ages', 30.00, '$25-$50', 4.9, '2023-06-15', 'Easy'),
@@ -173,32 +173,32 @@ VALUES
 -- 12. Activity.Activity_Participant (5-25 participants per activity)
 
 -- First get activity IDs
-DECLARE @centralParkTour UNIQUEIDENTIFIER;
-SELECT @centralParkTour = ActivityID FROM Activity.Activity WHERE Name = 'Central Park Guided Walk';
+DECLARE @centralParkTour INT;
+SELECT @centralParkTour = ActivityNo FROM Activity.Activity WHERE Name = 'Central Park Guided Walk';
 
 -- Get participant IDs (first 15 from the sample)
-DECLARE @participant1 UNIQUEIDENTIFIER, @participant2 UNIQUEIDENTIFIER, @participant3 UNIQUEIDENTIFIER, @participant4 UNIQUEIDENTIFIER, @participant5 UNIQUEIDENTIFIER;
-DECLARE @participant6 UNIQUEIDENTIFIER, @participant7 UNIQUEIDENTIFIER, @participant8 UNIQUEIDENTIFIER, @participant9 UNIQUEIDENTIFIER, @participant10 UNIQUEIDENTIFIER;
-DECLARE @participant11 UNIQUEIDENTIFIER, @participant12 UNIQUEIDENTIFIER, @participant13 UNIQUEIDENTIFIER, @participant14 UNIQUEIDENTIFIER, @participant15 UNIQUEIDENTIFIER;
+DECLARE @participant1 INT, @participant2 INT, @participant3 INT, @participant4 INT, @participant5 INT;
+DECLARE @participant6 INT, @participant7 INT, @participant8 INT, @participant9 INT, @participant10 INT;
+DECLARE @participant11 INT, @participant12 INT, @participant13 INT, @participant14 INT, @participant15 INT;
 
-SELECT @participant1 = ParticipantID FROM Activity.Participant WHERE Name = 'John Smith';
-SELECT @participant2 = ParticipantID FROM Activity.Participant WHERE Name = 'Sarah Johnson';
-SELECT @participant3 = ParticipantID FROM Activity.Participant WHERE Name = 'The Lee Family';
-SELECT @participant4 = ParticipantID FROM Activity.Participant WHERE Name = 'Michael Chen';
-SELECT @participant5 = ParticipantID FROM Activity.Participant WHERE Name = 'Robert Wilson';
-SELECT @participant6 = ParticipantID FROM Activity.Participant WHERE Name = 'Tech Solutions Group';
-SELECT @participant7 = ParticipantID FROM Activity.Participant WHERE Name = 'Emily Davis';
-SELECT @participant8 = ParticipantID FROM Activity.Participant WHERE Name = 'Book Club Members';
-SELECT @participant9 = ParticipantID FROM Activity.Participant WHERE Name = 'David Kim';
-SELECT @participant10 = ParticipantID FROM Activity.Participant WHERE Name = 'The Garcia Family';
-SELECT @participant11 = ParticipantID FROM Activity.Participant WHERE Name = 'Jessica Wong';
-SELECT @participant12 = ParticipantID FROM Activity.Participant WHERE Name = 'Margaret Thompson';
-SELECT @participant13 = ParticipantID FROM Activity.Participant WHERE Name = 'Finance Team Outing';
-SELECT @participant14 = ParticipantID FROM Activity.Participant WHERE Name = 'Daniel Brown';
-SELECT @participant15 = ParticipantID FROM Activity.Participant WHERE Name = 'Running Club';
+SELECT @participant1 = ParticipantNo FROM Activity.Participant WHERE Name = 'John Smith';
+SELECT @participant2 = ParticipantNo FROM Activity.Participant WHERE Name = 'Sarah Johnson';
+SELECT @participant3 = ParticipantNo FROM Activity.Participant WHERE Name = 'The Lee Family';
+SELECT @participant4 = ParticipantNo FROM Activity.Participant WHERE Name = 'Michael Chen';
+SELECT @participant5 = ParticipantNo FROM Activity.Participant WHERE Name = 'Robert Wilson';
+SELECT @participant6 = ParticipantNo FROM Activity.Participant WHERE Name = 'Tech Solutions Group';
+SELECT @participant7 = ParticipantNo FROM Activity.Participant WHERE Name = 'Emily Davis';
+SELECT @participant8 = ParticipantNo FROM Activity.Participant WHERE Name = 'Book Club Members';
+SELECT @participant9 = ParticipantNo FROM Activity.Participant WHERE Name = 'David Kim';
+SELECT @participant10 = ParticipantNo FROM Activity.Participant WHERE Name = 'The Garcia Family';
+SELECT @participant11 = ParticipantNo FROM Activity.Participant WHERE Name = 'Jessica Wong';
+SELECT @participant12 = ParticipantNo FROM Activity.Participant WHERE Name = 'Margaret Thompson';
+SELECT @participant13 = ParticipantNo FROM Activity.Participant WHERE Name = 'Finance Team Outing';
+SELECT @participant14 = ParticipantNo FROM Activity.Participant WHERE Name = 'Daniel Brown';
+SELECT @participant15 = ParticipantNo FROM Activity.Participant WHERE Name = 'Running Club';
 
 -- Register participants for the Central Park tour
-INSERT INTO Activity.Activity_Participant (ActivityParticipantID, ActivityID, ParticipantID, RegisteredDate, StatusID, StatusDate)
+INSERT INTO Activity.Activity_Participant (ActivityParticipantID, ActivityNo, ParticipantNo, RegisteredDate, StatusID, StatusDate)
 VALUES
 (NEWID(), @centralParkTour, @participant1, '2023-06-05', 'Active', '2023-06-05'),
 (NEWID(), @centralParkTour, @participant2, '2023-06-06', 'Active', '2023-06-06'),

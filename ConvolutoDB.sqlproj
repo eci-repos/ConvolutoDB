@@ -68,6 +68,10 @@
     <Folder Include="Activity\Views" />
     <Folder Include="Activity\Procedures" />
     <Folder Include="Activity\Tests" />
+    <Folder Include="Activity\Indexes" />
+    <Folder Include="Entity\Scripts" />
+    <Folder Include="Entity\Procedures" />
+    <Folder Include="Tests" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Activity\Tables\Activity.sql" />
@@ -85,14 +89,25 @@
     <Build Include="Activity\Tables\Participant_Type.sql" />
     <Build Include="Activity\Tables\Participant.sql" />
     <Build Include="Activity\Tables\Participant_Activity.sql" />
-    <Build Include="Scripts\3. Convoluto Sample Data.sql" />
-    <Build Include="Activity\Scripts\Activity_Embeddings_Add.sql" />
-    <Build Include="Activity\Procedures\Activity_Embedding_Update.sql" />
+    <None Include="Scripts\3. Convoluto Sample Data.sql" />
+    <None Include="Activity\Scripts\Activity_Embeddings_Add.sql" />
+    <None Include="Activity\Procedures\Activity_Embedding_Update.sql" />
     <Build Include="Activity\Views\Activity_Text_Chunk_View.sql" />
+    <Build Include="Activity\Indexes\Activity_Vector_Index.sql" />
+    <None Include="Entity\Scripts\Location_Embeddings_Add.sql" />
+    <None Include="Entity\Procedures\Location_Embedding_Update.sql" />
+    <None Include="Activity\Procedures\Activity_Chunks_Update.sql" />
+    <None Include="Activity\Scripts\Activity_Chunks_Add.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\1. Database Initialization.sql" />
     <None Include="Scripts\2. Models Initialization.sql" />
     <None Include="Activity\Tests\Test_Activity_Embeddings.sql" />
+    <None Include="README.md" />
+    <None Include="Tests\Geospatial_Proximity_Search.sql" />
+    <None Include="Activity\Tests\Test_Activity_Chunking.sql" />
+    <None Include="Activity\Tests\Text_Activity_VectorSearch.sql" />
+    <None Include="Activity\Tests\Test_Activity_Location.sql" />
+    <None Include="Activity\Tests\Test_Activity_Similar.sql" />
   </ItemGroup>
 </Project>

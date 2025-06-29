@@ -1,6 +1,7 @@
 ﻿
 CREATE TABLE Activity.Participant (
-   ParticipantID  UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+   ParticipantNo  INT IDENTITY PRIMARY KEY,
+   ParticipantID  UNIQUEIDENTIFIER DEFAULT NEWID(),
    TypeID         VARCHAR(20),
    Name           VARCHAR(128),
    Email          VARCHAR(128),

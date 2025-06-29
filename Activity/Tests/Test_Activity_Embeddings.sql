@@ -1,5 +1,4 @@
-﻿
-/*
+﻿/*
 SELECT * FROM Activity.Activity
  */
 
@@ -29,3 +28,28 @@ SELECT TOP(4)
        vector_distance('cosine', @search_vector, a.CombinedEmbedding) AS distance
   FROM Activity.Activity a
  ORDER BY distance;
+
+-- Find family-friendly cooking activities under $50 near a location
+DECLARE @locationEmbedding VECTOR(768) = 
+   AI_GENERATE_EMBEDDINGS('Central Park New York' USE MODEL ollama)
+DECLARE @activityEmbedding VECTOR(768) =
+   AI_GENERATE_EMBEDDINGS(N'family cooking class' USE MODEL ollama)
+
+SELECT a.ActivityNo,
+       a.Name,
+       a.Description,
+       a.Price,
+       l.Name AS LocationName,
+       (vector_distance('cosine', @locationEmbedding, l.CombinedEmbedding) * 0.4 +
+        vector_distance('cosine', @activityEmbedding, 
+           a.CombinedEmbedding) * 0.6) AS RelevanceScore
+  FROM Activity.Activity a
+  JOIN Entity.Location l 
+    ON a.LocationNo = l.LocationNo
+ WHERE a.StatusID = 'Active'
+   AND a.Price < 50
+   AND a.AgeGroupID IN ('All Ages', 'Family')
+ ORDER BY RelevanceScore DESC;
+
+
+

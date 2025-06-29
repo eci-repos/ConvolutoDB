@@ -1,5 +1,6 @@
 ﻿CREATE TABLE Entity.Location (
-   LocationID     UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+   LocationNo     INT IDENTITY PRIMARY KEY,
+   LocationID     UNIQUEIDENTIFIER DEFAULT NEWID(),
    TypeID         VARCHAR(20),
    Name           VARCHAR(128),
    Description    VARCHAR(1028),

@@ -8,39 +8,29 @@ Convoluto is an Activity Tracking Database designed to manage information about 
 
 This POC presents a simple Activity Tracking Database stating its Purpose, Key Features, Target Users, and Technical Approach, then goes through the steps of Enhancing the Schema and the preparation of resources for AI exploration based on the related features as offered by SQL Server 2025.
 
-## Purpose
+## Publishing the Database
+After building the Database project (in Visual Studio) you can Publish it to the target 
+Convoluto Database in SQL-Server 2025.  This will setup the base Database resources 
+including Tables, Views, and Procedures.
 
-This database was created to address several key business needs:
-1.	Centralized Activity Management: Provides a single source of truth for all organizational activities, from workshops and tours to performances and sporting events.
-2.	Participant Tracking: Enables detailed recording of participant information and their engagement across multiple activities.
-3.	Location Inventory: Maintains a complete catalog of available venues and facilities with rich descriptive attributes.
-4.	Operational Insights: Supports data analysis for capacity planning, popularity trends, and demographic participation patterns.
+## VECTOR EMBEDDINGS & SEMANTIC SEARCH
+To prepare for Semantic Search (for now) additional steps must be done by hand including:
 
-## Key Features
+- Run Scripts 1 through 3 in that order.
+- Run the Activity/Scripts/Activity_Embeddings_Add.sql script to add embeddings.
+- Run the Entity/Scripts/Location_Embeddings_Add.sql script to add embeddings.
+- Run the Activity/Procedures/Activity_Embedding_Update.sql script to update embeddings.
+- Run the Entity/Procedures/Location_Embedding_Update.sql script to update embeddings.
+- If needed, run the Activity/Indexes/Activity_Vector_Index.sql to create the VECTOR INDEX.
+- Test deployed resources with Activity/Tests/Test_Activity_Embeddings.
 
-- Multi-level Classification System: Activities, locations, and participants are categorized through extensive type tables, enabling consistent tagging and filtering.
-- Flexible Relationship Model: The many-to-many relationship between activities and participants allows for complex registration scenarios while maintaining data integrity.
-- Geospatial Capabilities: Location tables include latitude/longitude coordinates to support mapping and proximity-based queries.
-- Temporal Tracking: All entities include status histories with effective dates, allowing for temporal analysis of changes.
+NOTES:
 
-## Target Users
+- Embeddings can't be updated in a table if there is an existing VECTOR INDEX
+  therefore create the VECTOR INDEX after you updated the embeddings.
+- Before testing AI features start the NGINX instance.
 
-This database serves multiple organizational roles:
+## ADVANCE CHUNKING & SEARCH
 
-1.	Event Coordinators: To schedule activities and manage venue bookings
-2.	Registration Staff: To process participant sign-ups and manage waitlists
-3.	Marketing Teams: To analyze popular activities and target participant demographics
-4.	Facility Managers: To monitor location utilization and maintenance needs
-5.	Executive Leadership: To review overall program performance metrics
 
-## Technical Approach
 
-The database follows third normal form (3NF) design principles with:
-
-- Three distinct schemas (Common, Entity, Activity) for logical separation of concerns
-- Extensive referential integrity through foreign key constraints
-- Standardized type tables to ensure data consistency
-- UUID primary keys for robust relationship management
-- Comprehensive metadata including descriptions throughout
-
-This structure ensures the database remains flexible enough to accommodate new activity types and location categories while maintaining rigorous data quality standards. The design supports both operational transaction processing and analytical reporting requirements.
