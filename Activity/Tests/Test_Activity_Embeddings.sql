@@ -1,10 +1,11 @@
 ﻿/*
+-- ollama vector size is 768 (1998 agnostic size)
 SELECT * FROM Activity.Activity
  */
 
 DECLARE @search_text NVARCHAR(4000) = 
    'are there any outdoorsy not hard activities for kids that they can practice a hobby?'
-DECLARE @search_vector VECTOR(768) = AI_GENERATE_EMBEDDINGS(@search_text USE MODEL ollama);
+DECLARE @search_vector VECTOR(1998) = AI_GENERATE_EMBEDDINGS(@search_text USE MODEL ollama);
 
 SELECT TOP(4) 
        a.ActivityID,
@@ -30,9 +31,10 @@ SELECT TOP(4)
  ORDER BY distance;
 
 -- Find family-friendly cooking activities under $50 near a location
-DECLARE @locationEmbedding VECTOR(768) = 
+-- ollama vector size is 768 (1998 agnostic size)
+DECLARE @locationEmbedding VECTOR(1998) = 
    AI_GENERATE_EMBEDDINGS('Central Park New York' USE MODEL ollama)
-DECLARE @activityEmbedding VECTOR(768) =
+DECLARE @activityEmbedding VECTOR(1998) =
    AI_GENERATE_EMBEDDINGS(N'family cooking class' USE MODEL ollama)
 
 SELECT a.ActivityNo,

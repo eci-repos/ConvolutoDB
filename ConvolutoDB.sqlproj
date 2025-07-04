@@ -106,7 +106,7 @@
     <None Include="README.md" />
     <None Include="Tests\Geospatial_Proximity_Search.sql" />
     <None Include="Activity\Tests\Test_Activity_Chunking.sql" />
-    <None Include="Activity\Tests\Text_Activity_VectorSearch.sql" />
+    <None Include="Activity\Tests\Test_Activity_VectorSearch.sql" />
     <None Include="Activity\Tests\Test_Activity_Location.sql" />
     <None Include="Activity\Tests\Test_Activity_Similar.sql" />
   </ItemGroup>
