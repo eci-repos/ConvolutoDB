@@ -93,7 +93,7 @@
     <None Include="Activity\Scripts\Activity_Embeddings_Add.sql" />
     <None Include="Activity\Procedures\Activity_Embedding_Update.sql" />
     <Build Include="Activity\Views\Activity_Text_Chunk_View.sql" />
-    <Build Include="Activity\Indexes\Activity_Vector_Index.sql" />
+    <None Include="Activity\Indexes\Activity_Vector_Index.sql" />
     <None Include="Entity\Scripts\Location_Embeddings_Add.sql" />
     <None Include="Entity\Procedures\Location_Embedding_Update.sql" />
     <None Include="Activity\Procedures\Activity_Chunks_Update.sql" />

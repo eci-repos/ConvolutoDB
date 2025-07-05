@@ -1,6 +1,5 @@
 ﻿-- Search within chunks
--- ollama vector size is 768 (1998 agnostic size)
-DECLARE @questionEmbedding VECTOR(1998) = 
+DECLARE @questionEmbedding VECTOR(768) = 
    AI_GENERATE_EMBEDDINGS('What safety measures are included?' USE MODEL ollama);
 
 SELECT a.ActivityID,

@@ -1,9 +1,8 @@
 ﻿-- Find activities that match location characteristics
--- ollama vector size is 768 (1998 agnostic size)
-DECLARE @locationConcept VECTOR(1998) = 
+DECLARE @locationConcept VECTOR(768) = 
    AI_GENERATE_EMBEDDINGS(
       'historic landmark with scenic views' USE MODEL ollama);
-DECLARE @activityConcept VECTOR(1998) =
+DECLARE @activityConcept VECTOR(768) =
    AI_GENERATE_EMBEDDINGS('educational tour' USE MODEL ollama);
 
 SELECT a.Name AS Activity,
