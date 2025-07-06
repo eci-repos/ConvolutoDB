@@ -110,5 +110,8 @@ models by adding the Activity_Embedding and Location_Embedding tables
 to have the ability to generate embeddings based on model characteristics
 such as VECTOR size (dimensions).
 
+Using dynamic SQL statements and the details stored in the Activities
+and Locations Embeddings tables a stored procedure can be created to
+generate those.
 
 
