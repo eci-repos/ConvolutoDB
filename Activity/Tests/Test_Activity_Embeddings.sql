@@ -1,6 +1,8 @@
 ﻿/*
 SELECT * FROM Activity.Activity
  */
+ 
+-- MODEL: ollama VECTOR(768)
 
 DECLARE @search_text NVARCHAR(4000) = 
    'are there any outdoorsy not hard activities for kids that they can practice a hobby?'
@@ -11,8 +13,11 @@ SELECT TOP(4)
        a.Name,
        a.Description,
        a.DificultyID,
-       vector_distance('cosine', @search_vector, a.CombinedEmbedding) AS distance
+       vector_distance('cosine', @search_vector, 
+          cast(e.Embedding as vector(768))) AS distance
   FROM Activity.Activity a
+  JOIN Activity.Activity_Embedding e
+    ON e.ActivityNo = a.ActivityNo
  ORDER BY distance;
  
 
@@ -25,8 +30,11 @@ SELECT TOP(4)
        a.Name,
        a.Description,
        a.DificultyID,
-       vector_distance('cosine', @search_vector, a.CombinedEmbedding) AS distance
+       vector_distance('cosine', @search_vector, 
+          cast(e.Embedding as vector(768))) AS distance
   FROM Activity.Activity a
+  JOIN Activity.Activity_Embedding e
+    ON e.ActivityNo = a.ActivityNo
  ORDER BY distance;
 
 -- Find family-friendly cooking activities under $50 near a location
@@ -41,12 +49,17 @@ SELECT a.ActivityNo,
        a.Description,
        a.Price,
        l.Name AS LocationName,
-       (vector_distance('cosine', @locationEmbedding, l.CombinedEmbedding) * 0.4 +
+       (vector_distance('cosine', @locationEmbedding, 
+           cast(le.Embedding as vector(768))) * 0.4 +
         vector_distance('cosine', @activityEmbedding, 
-           a.CombinedEmbedding) * 0.6) AS RelevanceScore
+           cast(ae.Embedding as vector(768))) * 0.6) AS RelevanceScore
   FROM Activity.Activity a
+  JOIN Activity.Activity_Embedding ae
+    ON ae.ActivityNo = a.ActivityNo
   JOIN Entity.Location l 
     ON a.LocationNo = l.LocationNo
+  JOIN Entity.Location_Embedding le
+    ON le.LocationNo = l.LocationNo
  WHERE a.StatusID = 'Active'
    AND a.Price < 50
    AND a.AgeGroupID IN ('All Ages', 'Family')

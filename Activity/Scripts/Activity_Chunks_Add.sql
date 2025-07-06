@@ -2,8 +2,8 @@
 ALTER TABLE Activity.Activity ADD DescriptionChunk VARCHAR(8000);
 
 -- Create a memory-optimized chunk table
--- DROP TABLE Activity.ActivityChunk
-CREATE TABLE Activity.ActivityChunk (
+-- DROP TABLE Activity.Activity_Chunk
+CREATE TABLE Activity.Activity_Chunk (
    ChunkID uniqueidentifier DEFAULT NEWID() PRIMARY KEY NONCLUSTERED,
    ActivityNo INT NOT NULL,
    ChunkNumber int NOT NULL,

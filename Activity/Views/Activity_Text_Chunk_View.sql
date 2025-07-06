@@ -8,7 +8,7 @@ SELECT ActivityNo,
        ' with Price Range (' + a.PriceRangeID + ')' +
        ' with Dificulty (' + a.DificultyID + ')' +
        ' with Rating (' + cast(a.Rating as varchar) + ') ' +
-       ' with Scheduled Duration of (' + isnull(cast(a.ScheduledDuration as varchar),'1 hour') TextChunk,
+       ' with Scheduled Duration of (' + isnull(cast(a.ScheduledDuration as varchar),'1 hour') ChunkText,
        a.StatusID,
        a.StatusDate,
        a.RatingDate,

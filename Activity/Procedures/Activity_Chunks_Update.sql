@@ -6,7 +6,7 @@ BEGIN
    SET NOCOUNT ON
    DECLARE @dt DATETIMEOFFSET = getutcdate()
    UPDATE x
-      SET x.DescriptionChunk = v.TextChunk,
+      SET x.DescriptionChunk = v.ChunkText,
           x.UpdatedDateTime = @dt
    -- DECLARE @CutOffDate DATETIMEOFFSET = null; SELECT *
      FROM Activity.Activity x
@@ -16,7 +16,7 @@ BEGIN
        OR (@CutOffDate is not null
       AND  x.UpdatedDateTime > @CutOffDate))
 
-   INSERT INTO Activity.ActivityChunk (
+   INSERT INTO Activity.Activity_Chunk (
       ActivityNo, ChunkNumber, ChunkText, ChunkEmbedding)
    SELECT a.ActivityNo,
           c.chunk_order,
@@ -37,5 +37,5 @@ GO
 -- test
 SELECT * FROM Activity.Activity WHERE DescriptionChunk is null
 EXEC [Activity].[Activity_Chunks_Update]
-SELECT * FROM Activity.ActivityChunk
+SELECT * FROM Activity.Activity_Chunk
  */
